@@ -2,6 +2,7 @@
 
 ## Game development
 * [GooglePlay - Game deployment](https://github.com/tariel36/SnippetsRepository/blob/master/Guides/GooglePlay/ApplicationDeployment/README.md);
+* [Steam - Game deployment](https://github.com/tariel36/SnippetsRepository/blob/master/Guides/Steam/ApplicationDeployment/README.md);
 
 ## Quality of life
 * [Live translation and transcribe by Microsoft Translate](https://github.com/tariel36/SnippetsRepository/blob/master/Guides/LiveTranslation/LiveTranslationWithTranscribe.md);
