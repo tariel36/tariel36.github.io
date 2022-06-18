@@ -29,6 +29,10 @@
 
 * [Visual Studio - Useful shortcuts](/Articles/Guides/CsWork/Work/VS-UsefulInfo.md);
 
+## Docker
+
+* [Hosting dockerized apps on your QNAP NAS](Articles/Guides/Docker/HostingDockerizedAappsOnYourQnapNas/README.md);
+
 # Useful lists
 
 Various compilations and list of useful things
@@ -56,3 +60,15 @@ Discord notification bot that support plugins.
 * [ToBot - Plugin - BlackScreenRecords](https://github.com/tariel36/ToBot_Plugin_BlackScreenRecords);
 * [ToBot - Plugin - KolekcjonerkiCom](https://github.com/tariel36/ToBot_Plugin_KolekcjonerkiCom);
 * [ToBot - Plugin - LowcyGierPl](https://github.com/tariel36/ToBot_Plugin_LowcyGierPl);
+
+## MovieDb
+
+Dockerized movie library browser
+
+[MovieDb](https://github.com/tariel36/MovieDb).
+
+## AssetManager
+
+Asset browser for all your gamedev assets.
+
+[AssetManager](https://github.com/tariel36/AssetManager)
