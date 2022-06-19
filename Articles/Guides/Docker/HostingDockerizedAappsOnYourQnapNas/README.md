@@ -5,7 +5,8 @@
 * [Legal](#legal);
 * [NAS and host machine configuration](#nas-and-host-machine-configuration);
 * [Install Container Station](#install-container-station);
-* [Prepare your NAS to install new docker applications](#prepare-your-nas-to-install-new-docker-applications);
+* [[Optional] Change base subnet for docker containers](#optional-change-base-subnet-for-docker-containers)
+* [[Optional][Not recommended] Prepare your NAS to install new docker applications](#optional-not-recommended-prepare-your-nas-to-install-new-docker-applications);
 * [[Optional] Create user for docker private image registry](#optional-create-user-for-docker-private-image-registry);
 * [Install `Registry` application](#install-registry-application);
 * [Add registry in container station](#add-registry-in-container-station);
@@ -17,6 +18,7 @@
 * [Pulling images from your repository](#pulling-images-from-your-repository);
 * [Executing own your `docker-compose.yml` files](#executing-own-your-docker-compose.yml-files);
 * [[Optional] Enable you VPN services.](#optional-enable-you-vpn-services.);
+* [Read more](#read-more);
 
 # Abstract
 
@@ -38,7 +40,55 @@ The codes used in examples are under [MIT license](https://opensource.org/licens
 
 Open `App Center` and find `Container Station`. Install it. This process is pretty strightforward.
 
-## Prepare your NAS to install new docker applications
+## [Optional] Change base subnet for docker containers
+
+If you use any VPN services, or other network services that create their own subnets you may receive an error that there are no free / not conflicting IP addresses.
+Easy workaround for that is to change base docker containers subnet.
+
+To do so, login through [WinSCP](https://winscp.net/eng/index.php) or other SSH client (i.e. [PuTTY](https://www.putty.org)), and navigate to `/share/CACHEDEV1_DATA/.qpkg/container-station/etc/` directory. Open `docker.json` file and change `default-address-pools` value. For example:
+
+From
+
+```json
+  "default-address-pools": [
+    {
+      "base": "172.29.0.0/16",
+      "size": 22
+    }
+  ],
+```
+
+To
+
+```json
+  "default-address-pools": [
+    {
+      "base": "173.29.0.0/16",
+      "size": 22
+    }
+  ],
+```
+
+(172 -> 173 change).
+
+Save the file.
+
+Navigate to `/share/CACHEDEV1_DATA/.qpkg/container-station/etc/docker/`, open or create `daemon.json` file and set the same key inside, so if you used above example, then freshly created file will look like that:
+
+```json
+{
+  "default-address-pools": [
+    {
+      "base": "173.29.0.0/16",
+      "size": 22
+    }
+  ],
+}
+```
+
+## [Optional][Not recommended] Prepare your NAS to install new docker applications
+
+**WARNING - THIS IS ONLY WORKAROUND, IT'S BETTER TO CHANGE BASE SUBNET OF DOCKER CONTAINERS**
 
 Several errors may occur on our way when installing docker applications. The one I had to resolve was related to the VPN services, and the message is:
 
@@ -146,4 +196,11 @@ It should create proper application group on your NAS.
 
 # [Optional] Enable you VPN services.
 
+If you disabled your VPN services, now it's time to enable them again.
+
 When you're done with installing new containers, you can enable back your VPN services.
+
+# Read more
+
+* [https://stackoverflow.com/questions/54720587/how-to-change-the-network-of-a-running-docker-container](https://stackoverflow.com/questions/54720587/how-to-change-the-network-of-a-running-docker-container);
+* [https://medium.com/@yaroslavberkut/how-i-spun-up-custom-docker-registry-on-my-own-qnap-server-490f87e30167](https://medium.com/@yaroslavberkut/how-i-spun-up-custom-docker-registry-on-my-own-qnap-server-490f87e30167);
