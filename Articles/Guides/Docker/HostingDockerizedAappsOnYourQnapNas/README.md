@@ -19,6 +19,7 @@
 * [Executing own your `docker-compose.yml` files](#executing-own-your-docker-compose.yml-files);
 * [[Optional] Enable you VPN services.](#optional-enable-you-vpn-services.);
 * [Read more](#read-more);
+* [Common issues](#common-issues);
 
 # Abstract
 
@@ -204,3 +205,21 @@ When you're done with installing new containers, you can enable back your VPN se
 
 * [https://stackoverflow.com/questions/54720587/how-to-change-the-network-of-a-running-docker-container](https://stackoverflow.com/questions/54720587/how-to-change-the-network-of-a-running-docker-container);
 * [https://medium.com/@yaroslavberkut/how-i-spun-up-custom-docker-registry-on-my-own-qnap-server-490f87e30167](https://medium.com/@yaroslavberkut/how-i-spun-up-custom-docker-registry-on-my-own-qnap-server-490f87e30167);
+
+# Common issues
+
+## Connection through ZeroTier suddenly stopped working
+
+This is weird problem that probably infinite number of problems and solutions. Here are those I've encountered and solution to them.
+
+### ZeroTier is in invalid state - `Tunneling` or `Offline` instead of `Online`
+
+This tends to happen after some time. So far there is no permament solution and workaround for this is to stop QVPN and ZeroTier services for 10-15 mintues and run them again, starting with QVPN. After that connection status should return to `Online`.
+
+### There are too many invalid virtual switches
+
+This problem happened for me because of unknown reason. Maybe I was fiddling with something, maybe `Container Station` is at fault, hard to say.
+
+For some reason the connection through ZeroTier could not go to NAS or from it to outside world, while local network or pinging outside world from NAS worked. When I tried to figure out what's happening using `ping` and `tracert` I found out that there was single jump from my laptop to local PC, while from my laptop to NAS over 16, dying on 17th and further.
+
+After some `programming duck` session with my friend I went to `Virtual Switch` configuration window and found out that there are multiple wrongly configured virtual switches in `172.x.x.x` network that were not used by anything (in contrast with, for example `173.x.x.x` network used by `Container Station` on my NAS). I've deleted all invalid/unused virtual switches from `172.x.x.x` network and connection was revived. And again, there single jump from my laptop to NAS.
