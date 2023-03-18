@@ -223,3 +223,8 @@ This problem happened for me because of unknown reason. Maybe I was fiddling wit
 For some reason the connection through ZeroTier could not go to NAS or from it to outside world, while local network or pinging outside world from NAS worked. When I tried to figure out what's happening using `ping` and `tracert` I found out that there was single jump from my laptop to local PC, while from my laptop to NAS over 16, dying on 17th and further.
 
 After some `programming duck` session with my friend I went to `Virtual Switch` configuration window and found out that there are multiple wrongly configured virtual switches in `172.x.x.x` network that were not used by anything (in contrast with, for example `173.x.x.x` network used by `Container Station` on my NAS). I've deleted all invalid/unused virtual switches from `172.x.x.x` network and connection was revived. And again, there single jump from my laptop to NAS.
+
+### Everything is configured correctly but external PC still can't reach NAS.
+
+This is weird and probably related to other issues, but it seems that connection starts to work properly when you run `ping` command from NAS against your external PC.
+
