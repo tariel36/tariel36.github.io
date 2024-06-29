@@ -297,3 +297,5 @@ deploy/
 build/nuke
 appsettings.json
 project/AutoYoutubePlaylist/*/appsettings.json
+
+ignored/

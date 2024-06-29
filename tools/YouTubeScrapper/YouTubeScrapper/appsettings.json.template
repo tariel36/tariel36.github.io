@@ -1,0 +1,24 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Trace",
+      "Microsoft.AspNetCore": "Trace"
+    }
+  },
+  "AppConfiguration": {
+    "UseLocalData": "",
+    "LocalDataPath": "",
+    "YouTubeUser": "",
+    "ClientSecretsFilePath": "",
+    "ApplicationName": "",
+    "Channels": [
+      "UCrkPsvLGln62OMZRO6K-llg"
+    ],
+    "ChannelProcessors": [
+      {
+        "ProcessorName": "NickChapasChannelProcessor",
+        "ChannelId": "UCrkPsvLGln62OMZRO6K-llg"
+      }
+    ]
+  }
+}
